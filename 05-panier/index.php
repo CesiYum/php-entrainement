@@ -5,4 +5,9 @@ $products = [
     ['name' => 'Tapis', 'price' => 12, 'available' => false],
     ['name' => 'Souris', 'price' => 30, 'available' => true],
 ];
-// TODO : filter, map, reduce.
+
+$productStock = array_filter($products, fn($p) => $p['available']);
+$prixEnStock = array_map(fn($p) => $p['price'], $productStock);
+$somme = array_reduce($prixEnStock, fn ($carry, $item) => $carry += $item);
+
+echo "$somme";
